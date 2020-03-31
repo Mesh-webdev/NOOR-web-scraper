@@ -1,11 +1,28 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "Backend logic for Noor web-scraper, allows the user to scrape the captcha code that is in a form of a picture. then proceed to scrape the name of the logged in user. this is a part of the full system. the full system also scrapes all the parents/guradians names and contact numbers of logged-in school, but is commercially in-use as of now.",
+  "description": "Backend logic for Noor web-scraper.Using 'puppeteer' it allows the user to scrape the captcha code that is in a form of a picture. then proceed to scrape the name of the logged in user. this is a part of the full system. the full system also scrapes all the parents/guradians names and contact numbers of logged-in school, but is commercially in-use as of now.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js"
   },
-  "author": "Meshari sulaiman",
-  "license": "ISC"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Mesh-webdev/NOOR-web-scraper.git"
+  },
+  "author": "Meshari Sulaiman",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^4.0.1",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "path": "^0.12.7",
+    "puppeteer": "^2.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
 }
