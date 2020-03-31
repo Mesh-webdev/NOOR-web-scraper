@@ -1,0 +1,11 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Backend logic for Noor web-scraper, allows the user to scrape the captcha code that is in a form of a picture. then proceed to scrape the name of the logged in user. this is a part of the full system. the full system also scrapes all the parents/guradians names and contact numbers of logged-in school, but is commercially in-use as of now.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Meshari sulaiman",
+  "license": "ISC"
+}
