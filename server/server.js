@@ -3,15 +3,24 @@ const express = require('express');
 const cors = require('cors');
 // ========================
 
-// Scraping imports =========
-const puppeteer = require('puppeteer');
-const crypto = require('crypto');
-const path = require('path');
-const fs = require('fs');
-// ========================
+const scrape = require('./scrape');
+
 
 const app = express();
+app.use(cors());
 
-app.listen(3000, () => {
+
+app.listen(3000, async () => {
     console.log('Listening on 3000!');
+    await scrape.Scrape();
+    console.log("Done");
 });
+
+
+
+//Importing routes
+const routes = require('./routes/routes');
+
+
+//Routes middlewares
+app.use('/api', routes);
