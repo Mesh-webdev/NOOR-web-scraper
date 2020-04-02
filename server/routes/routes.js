@@ -1,4 +1,6 @@
 const router = require('express').Router();
+const scrape = require('../scrape');
+const crypto = require('crypto');
 
 //GET test
 router.get('/get', (req, res) => {
@@ -11,8 +13,14 @@ router.post('/post', (req, res) => {
 })
 
 //GET scrape
-router.get('/scrape', (req, res) => {
-    res.send("Scrape")
+router.get('/scrape', async (req, res) => {
+    const script = await scrape.Scrape(sessionId = crypto.randomBytes(16).toString('hex'));
+    if (script)
+        res.send("Success")
+    else
+        res.send("Failed")
+
+    console.log("Done");
 })
 
 module.exports = router;
