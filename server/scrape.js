@@ -22,7 +22,7 @@ async function Scrape() {
 }
 
 async function checkInternet() {
-    let maxCount = 40000;
+    let maxCount = 10;
     let checkedCount = 0;
     let isNotConnected = true;
     // 0- log(): script has begun
