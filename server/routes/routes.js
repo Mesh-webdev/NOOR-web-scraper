@@ -13,18 +13,6 @@ router.post('/post', (req, res) => {
     res.send("POST test")
 })
 
-//GET scrape
-router.get('/scrape', async (req, res) => {
-    const sessionId = crypto.randomBytes(16).toString('hex')
-    const script = await scrape.Scrape(sessionId);
-    if (script)
-        res.send(sessionId)
-    else
-        res.send("Failed")
-
-    console.log("Done");
-})
-
 //GET image
 router.get('/image/:id', (req, res) => {
     id = req.params.id;

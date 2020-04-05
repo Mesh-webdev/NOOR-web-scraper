@@ -3,7 +3,6 @@ const puppeteer = require('puppeteer');
 const path = require('path');
 const fs = require('fs');
 // ========================
-const datetime = new Date();
 
 // Global status of the script
 const scriptStatus = {
@@ -13,10 +12,17 @@ const scriptStatus = {
 const selectors = {
     captcha: '#divGGchh',
     loginBtn: '#btnSubl',
+    usernameInput: '#tbGn',
+    pwdInput: '#tbGpr',
+    captchaInput: '#tbGc',
+    username: '.username'
 };
+
+let logArray = [];
 
 // Main scrape function
 async function Scrape(sessionId) {
+    logArray = [];
     // TODO:
     // **** I SHOULD TRY CATCH THESE STEPS AND CHANGE THE SCRIPTSTATUS ACCORDINGLY ****
     //
@@ -26,9 +32,12 @@ async function Scrape(sessionId) {
     // 2- Check directory
     await makeDir();
     // 3- Launch chromium, Navigate to the page and scrape the captcha
-    const page = await LaunchChromium(sessionId);
+    const _page = await LaunchChromium(sessionId);
     log(sessionId + ' instance ' + scriptStatus.message);
-    return page;
+    return {
+        page: _page,
+        logArr: logArray
+    };
 }
 
 async function checkInternet() {
@@ -160,13 +169,48 @@ async function LaunchChromium(sessionId) {
     });
 }
 
-async function login(page) {
+async function login(page, data) {
     return new Promise(async (resolve, reject) => {
         try {
-            const loginBtn = await page.waitForSelector(selectors.loginBtn);
-            loginBtn.click();
+            //Type username
+            const usernameInput = await page.waitForSelector(selectors.usernameInput);
+            usernameInput.type(data.username)
+                .then(async () => {
+                    console.log("Username typed");
+
+                    // Then type password
+                    const pwdInput = await page.waitForSelector(selectors.pwdInput)
+                    pwdInput.type(data.password)
+                        .then(async () => {
+                            console.log("Password typed");
+
+                            // Then type captcha
+                            const captchaInput = await page.waitForSelector(selectors.captchaInput);
+                            captchaInput.type(data.captcha)
+                                .then(async () => {
+                                    console.log('Captcha typed');
+                                    const loginBtn = await page.waitForSelector(selectors.loginBtn);
+                                    loginBtn.click();
+                                    console.log('Clicked');
+                                    await page.waitForNavigation()
+                                        .then(async () => {
+                                            console.log('Waited');
+                                            console.log(page.url());
+                                            await page.$eval(selectors.username, e => e.innerText)
+                                                .then((username) => {
+                                                    resolve(username);
+                                                })
+                                        })
+                                })
+                        })
+                })
+                .catch((err) => {
+                    console.log(err);
+                })
+
         } catch (error) {
             console.log('error: ' + error);
+            reject(error);
         }
     });
 }
@@ -195,7 +239,11 @@ async function makeDir() {
 }
 
 function log(msg) {
-    console.log('[' + datetime + ']' + ': -- ' + msg);
+    const datetime = new Date();
+    formattedDatetime = datetime.toLocaleString()
+    let line = '[' + formattedDatetime + ']' + ': -- ' + msg;
+    logArray.push(line)
+    console.log(line);
 }
 
 module.exports = {

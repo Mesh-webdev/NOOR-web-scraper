@@ -31,16 +31,26 @@ io.on('connection', (socket) => {
 
     socket.on('scrape', async (data, fn) => {
         console.log(data);
-        page = await scrape.Scrape(socket.id);
+        script = await (await scrape.Scrape(socket.id));
+        page = script.page;
+        _log = script.logArr;
         fn({
             status: true,
-            instance: socket.id
+            instance: socket.id,
+            log: _log
         })
 
     })
 
-    socket.on('login', () => {
-        scrape.login(page);
+    socket.on('login', (data) => {
+
+        scrape.login(page, data)
+            .then((username) => {
+                socket.emit('loggedOn', username)
+            })
+            .catch((err) => {
+                console.log(err);
+            })
     })
 
 })

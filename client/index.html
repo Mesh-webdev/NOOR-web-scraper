@@ -28,8 +28,9 @@
 
     <header>
         <img src="./imgs/logo.png" alt="">
+        <img id="testImg" src="" alt="">
         <h1>NOOR web-scraper</h1>
-        <p>Using Google's puppeteer</p>
+        <p>Using Google's puppeteer tool.</p>
     </header>
 
     <main>
@@ -37,20 +38,26 @@
             <div class="description-box">
                 <p> <strong>Description </strong>
                     <br>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel unde, eum est laudantium nemo vitae
-                    libero
-                    numquam vero dolores, culpa voluptatem. Saepe alias voluptates explicabo, porro quam nulla iste
-                    vero?
+                    Noor web-scraper. Using 'puppeteer' it allows the user to scrape the captcha
+                    in the form of an image. then proceed to scrape the name of the logged in user. this is a small part
+                    of the whole system. the full system also scrapes all the parents/guradians names and contact
+                    numbers
+                    of logged-in school, and is commercially in-use as of now.
                 </p>
             </div>
 
-            <div class="call-for-action">
+            <div class="call-for-action" id="call-for-action">
                 <div class="action">
                     <input type="button" id="scrape" value="Start scraping!">
                 </div>
                 <div id="loader" class="flex-column">
                     <div class="lds-dual-ring"></div>
                     <div for="">Scraping...</div>
+                </div>
+
+                <div id="loader2" class="flex-column">
+                    <div class="lds-dual-ring"></div>
+                    <div for="">Logging in...</div>
                 </div>
 
                 <div class="form">
@@ -69,8 +76,8 @@
                             aria-describedby="inputGroup-sizing-default">
                     </div>
 
-                    <div class="input-group my-3">
-                        <div class="btn btn-danger" id="captchaId"> ####### </div>
+                    <div class="input-group my-3 p-1">
+                        <img id="captcha-img" src="" alt="">
                     </div>
 
 
@@ -81,22 +88,20 @@
                         <input type="text" id="captcha" class="form-control" aria-label="Default"
                             aria-describedby="inputGroup-sizing-default">
                     </div>
-                    <input type="button" value="Click" id="login">
+                    <input type="button" value="Login to NOOR" id="login">
+                </div>
+
+
+                <div class="welcome">
+                    <h1>Welcome</h1>
+                    <hr>
+                    <h5 id='welcome-username'></h5>
                 </div>
 
             </div>
 
             <div class="log">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat facilis repellendus, adipisci
-                    inventore soluta iure odio quisquam vitae laboriosam aliquam tempora odit nihil vel nobis doloribus
-                    delectus velit temporibus voluptatem.
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque impedit molestiae rerum esse error
-                    eius minima deleniti atque aliquam iusto. Hic molestias facere aliquid, animi dolorem velit aperiam
-                    quia quibusdam.
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit, id! Minima laboriosam id, est
-                    itaque explicabo eaque vitae debitis repudiandae repellat voluptatibus quo laborum quae veritatis
-                    corrupti officia necessitatibus mollitia?
-                </p>
+                <h3 class="mb-3">Script log 📜</h3>
             </div>
 
         </div>

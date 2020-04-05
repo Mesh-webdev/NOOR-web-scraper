@@ -2,9 +2,19 @@
   transition: background 300ms ease-in-out;
 }
 
+input {
+  transition: all 300ms ease-in-out;
+}
+
+h1 {
+  transition: 0.1s;
+}
+
 :root {
   /* Grays */
-  --gray0: #f8f8f8;
+  --grayOp: #dbe1e857;
+  --grayOp1: #12181b57;
+  --gray0: #f2f5f8;
   --gray1: #dbe1e8;
   --gray2: #b2becd;
   --gray3: #6c7983;
@@ -17,8 +27,8 @@
   /* Light Scheme */
   --tealOp: rgba(184, 233, 235, 0.15);
   --teal0: #eef8ff;
-  --teal1: #d1f5ff;
-  --teal2: #78e3fd;
+  --teal1: #bff0fd;
+  --teal2: #63d1ec;
   --green0: #a1e8af;
   --green1: #94c595;
   --purple: #7d53de;
@@ -44,7 +54,7 @@
 }
 
 .light {
-  --bg: white;
+  --bg: var(--gray0);
   --bg-header-nav: linear-gradient(to right, var(--teal1), var(--teal0));
   --bg-btn: var(--purple);
   --bg-main-box: var(--tealOp);
@@ -59,6 +69,7 @@
   --input-group: #eef8ff;
   --form-control: white;
   --input-group-color: var(--gray5);
+  --log-line-border: var(--grayOp1)
 }
 
 .dark {
@@ -75,6 +86,7 @@
   --input-group: #475369;
   --form-control: #262f3e;
   --input-group-color: white;
+  --log-line-border: var(--grayOp)
 }
 
 html {
@@ -99,6 +111,20 @@ a {
   text-decoration: none;
 }
 
+header {
+  padding: 1em;
+  background: var(--bg-header-nav);
+  color: var(--text-header);
+  margin-bottom: 1em;
+  padding-bottom: 3.5em;
+  text-align: center;
+  clip-path: polygon(50% 0%, 100% 0, 100% 65%, 50% 100%, 0 65%, 0 0);
+  transition: margin-bottom 0.5s ease-out,
+    clip-path 0.5s ease-out,
+    color 0.5s ease-out,
+  ;
+}
+
 .navbar {
   height: 70px;
   width: 100%;
@@ -115,16 +141,6 @@ a {
   align-items: center;
 }
 
-header {
-  padding: 1em;
-  background: var(--bg-header-nav);
-  color: var(--text-header);
-  margin-bottom: 1em;
-  padding-bottom: 3.5em;
-  text-align: center;
-  clip-path: polygon(50% 0%, 100% 0, 100% 65%, 50% 100%, 0 65%, 0 0);
-  transition: ease all 0.4s;
-}
 
 #theme-toggle {
   background: var(--bg-btn);
@@ -134,8 +150,9 @@ header {
   text-align: center;
   text-decoration: none;
   border-radius: 8%;
-  box-shadow: 0px 3px 9px 1px var(--shadow);
+  box-shadow: 0px 2px 5px 0px var(--shadow);
 }
+
 
 main {
   min-height: 700px;
@@ -150,7 +167,7 @@ main {
 }
 
 .description-box {
-  min-height: 140px;
+  min-height: 195px;
   padding: 1em;
   color: var(--text-filler);
   width: 60%;
@@ -159,16 +176,26 @@ main {
   transition: ease all 0.2s;
 }
 
+.description-box p {
+  text-align: justify;
+}
+
 .log {
-  padding: 3em;
+  padding: 1.5em;
   display: grid;
   justify-content: center;
-  align-content: center;
+  align-content: start;
   min-height: 300px;
   background: var(--call-for-action-box);
   width: 60%;
   text-align: center;
   margin-top: 72px;
+}
+
+.log-line {
+  padding: 0.5em;
+  border-bottom: solid 1px var(--log-line-border);
+  text-align: left;
 }
 
 .call-for-action {
@@ -185,6 +212,7 @@ main {
 
 .form {
   justify-items: start;
+  text-align: start;
 }
 
 .form-control {
@@ -213,8 +241,8 @@ input[type='password']:focus {
   background: var(--bg-btn);
   border: none;
   color: var(--white);
-  padding: 8px 20px;
-  font-size: 1.5em;
+  padding: 8px 18px;
+  font-size: 1.2em;
   text-align: center;
   text-decoration: none;
   border-radius: 8%;
@@ -233,6 +261,10 @@ input[type='password']:focus {
 
 /* Loader */
 #loader {
+  display: none;
+}
+
+#loader2 {
   display: none;
 }
 
@@ -269,7 +301,7 @@ input[type='password']:focus {
 @media only screen and (max-width: 1200px) {
   .description-box {
     margin-bottom: 20px;
-    min-height: 180px;
+    min-height: 200px;
     width: 70%;
   }
 
@@ -277,14 +309,41 @@ input[type='password']:focus {
     width: 70%;
   }
 
+  #login {
+    padding: 7px 18px;
+    font-size: 1.3em;
+  }
+
   .log {
     width: 70%;
   }
 }
-@media only screen and (max-width: 830px) {
+
+@media only screen and (max-width: 1000px) {
+  .description-box {
+    margin-bottom: 20px;
+    min-height: 230px;
+    width: 70%;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .description-box {
+    margin-bottom: 20px;
+    min-height: 245px;
+    width: 70%;
+  }
+}
+
+@media only screen and (max-width: 840px) {
+
+  header h1 {
+    font-size: 32px;
+  }
+
   .description-box {
     margin-bottom: 30px;
-    min-height: 240px;
+    min-height: 255px;
     width: 75%;
   }
 
@@ -293,14 +352,28 @@ input[type='password']:focus {
     margin-top: 60px;
   }
 
+  #login {
+    padding: 6px 15px;
+    font-size: 1.2em;
+  }
+
   .log {
     width: 75%;
   }
 }
-@media only screen and (max-width: 670px) {
+
+@media only screen and (max-width: 760px) {
   .description-box {
     margin-bottom: 30px;
-    min-height: 240px;
+    min-height: 270px;
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 680px) {
+  .description-box {
+    margin-bottom: 30px;
+    min-height: 280px;
     width: 80%;
   }
 
@@ -313,16 +386,41 @@ input[type='password']:focus {
     width: 75%;
   }
 }
-@media only screen and (max-width: 550px) {
+
+@media only screen and (max-width: 620px) {
   .description-box {
     margin-bottom: 25px;
-    min-height: 260px;
+    min-height: 300px;
+    width: 80%;
+  }
+
+  .call-for-action {
+    width: 80%;
+    margin-top: 50px;
+  }
+
+  .log {
+    width: 75%;
+  }
+}
+
+@media only screen and (max-width: 580px) {
+
+  #theme-toggle {
+    padding: 6px 15px;
+    font-size: 0.9em;
+    box-shadow: 0px 2px 9px 1px var(--shadow);
+  }
+
+  .description-box {
+    margin-bottom: 20px;
+    min-height: 320px;
     width: 85%;
   }
 
   .call-for-action {
     width: 85%;
-    margin-top: 40px;
+    margin-top: 35px;
   }
 
   .log {
@@ -331,23 +429,54 @@ input[type='password']:focus {
 
   header {
     clip-path: polygon(50% 0%, 100% 0, 100% 70%, 50% 100%, 0 70%, 0 0);
-    min-height: 430px;
+    /* clip-path: polygon(50% 0%, 100% 0, 100% 65%, 50% 100%, 0 65%, 0 0); */
+    /* min-height: 430px; */
   }
 }
+
 @media only screen and (max-width: 520px) {
+  .description-box {
+    margin-bottom: 20px;
+    min-height: 335px;
+    width: 85%;
+  }
+
+  .call-for-action {
+    width: 85%;
+    margin-top: 30px;
+  }
+
   .form div span {
     font-size: 15px;
   }
 
-  .call-for-action {
-    padding: 2em;
-    margin-top: 30px;
+  header h1 {
+    font-size: 28px;
   }
+
+  #login {
+    padding: 5px 12px;
+    font-size: 1em;
+  }
+
+  #scrape {
+    padding: 7px 18px;
+    font-size: 1.2em;
+  }
+
 }
-@media only screen and (max-width: 450px) {
+
+@media only screen and (max-width: 490px) {
+
+  #theme-toggle {
+    padding: 5px 13px;
+    font-size: 0.9em;
+    box-shadow: 0px 2px 9px 1px var(--shadow);
+  }
+
   .description-box {
     margin-bottom: 20px;
-    min-height: 280px;
+    min-height: 345px;
     width: 90%;
   }
 
@@ -356,13 +485,21 @@ input[type='password']:focus {
     margin-top: 28px;
   }
 
+  #login {
+    padding: 4px 10px;
+    font-size: 1em;
+  }
+
   .log {
     width: 90%;
   }
 
   header {
     clip-path: polygon(50% 0%, 100% 0, 100% 70%, 50% 100%, 0 70%, 0 0);
-    min-height: 430px;
+  }
+
+  header h1 {
+    font-size: 24px;
   }
 
   .form div span {
@@ -373,10 +510,18 @@ input[type='password']:focus {
     padding: 1.5em;
   }
 }
-@media only screen and (max-width: 420px) {
+
+@media only screen and (max-width: 460px) {
+
+  #theme-toggle {
+    padding: 4px 10px;
+    font-size: 0.9em;
+    box-shadow: 0px 2px 9px 1px var(--shadow);
+  }
+
   .description-box {
-    margin-bottom: 20px;
-    min-height: 300px;
+    margin-bottom: 15px;
+    min-height: 355px;
     width: 95%;
   }
 
@@ -391,6 +536,65 @@ input[type='password']:focus {
 
   header {
     clip-path: polygon(50% 0%, 100% 0, 100% 75%, 50% 100%, 0 75%, 0 0);
-    min-height: 430px;
   }
+}
+
+@media only screen and (max-width: 435px) {
+
+  .description-box {
+    margin-bottom: 13px;
+    min-height: 370px;
+    width: 95%;
+  }
+
+  .call-for-action {
+    width: 95%;
+    margin-top: 20px;
+  }
+
+}
+
+@media only screen and (max-width: 425px) {
+
+  .description-box {
+    margin-bottom: 10px;
+    min-height: 400px;
+    width: 95%;
+  }
+
+  .call-for-action {
+    width: 95%;
+    margin-top: 8px;
+  }
+
+}
+
+@media only screen and (max-width: 415px) {
+
+  .description-box {
+    margin-bottom: 10px;
+    min-height: 460px;
+    width: 95%;
+  }
+
+  .call-for-action {
+    width: 95%;
+    margin-top: 8px;
+  }
+
+}
+
+@media only screen and (max-width: 370px) {
+
+  .description-box {
+    margin-bottom: 10px;
+    min-height: 500px;
+    width: 95%;
+  }
+
+  .call-for-action {
+    width: 95%;
+    margin-top: 8px;
+  }
+
 }
