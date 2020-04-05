@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+    <script defer src="app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container py-4 d-flex justify-content-center">
+
+        <div class="action">
+            <input type="button" class="btn btn-lg btn-warning px-3" id="scrape" value="Start scraping !">
+        </div>
+        <div id="loader" class="flex-column">
+            <div class="lds-dual-ring"></div>
+            <div for="">Scraping...</div>
+        </div>
+        <div id="form" class="w-50">
+            <div class="input-group mb-3 mt-5">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Username</span>
+                </div>
+                <input type="text" id="username" class="form-control" aria-label="Default"
+                    aria-describedby="inputGroup-sizing-default">
+            </div>
+            <div class="input-group mb-3 mt-5">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Password</span>
+                </div>
+                <input type="password" id="password" class="form-control" aria-label="Default"
+                    aria-describedby="inputGroup-sizing-default">
+            </div>
+
+            <div class="input-group mb-3 mt-5">
+                <div class="btn btn-danger" id="captchaId"> </div>
+            </div>
+
+
+            <div class="input-group mb-3 mt-5">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Captcha</span>
+                </div>
+                <input type="text" id="captcha" class="form-control" aria-label="Default"
+                    aria-describedby="inputGroup-sizing-default">
+            </div>
+            <input type="button" value="Click" id="login" class="btn btn-lg btn-success px-5">
+        </div>
+    </div>
+
+</body>
+
+</html>

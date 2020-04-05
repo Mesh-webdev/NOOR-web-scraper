@@ -1,21 +1,46 @@
 // Server imports =========
 const express = require('express');
-const cors = require('cors');
+const socket = require('socket.io');
+const scrape = require('./scrape');
+const router = require('./routes/routes');
 // ========================
 
+const path = require('path');
+
+
+// App
 const app = express();
-app.use(cors());
+const server = app.listen('4000', () => {
+    console.log('Listening to port 4000');
+    console.log(path.dirname(require.main.filename).trim().toString());
+})
 
+// Static files
+app.use(express.static('../client'))
 
-app.listen(3000, async () => {
-    console.log('Listening on 3000!');
-});
+// Socket setup
+const io = socket(server)
 
+// Router middleware
+app.use('/api', router)
 
+// IO connection 
+io.on('connection', (socket) => {
+    let page;
+    console.log('New socket opened: ' + socket.id);
 
-//Importing routes
-const routes = require('./routes/routes');
+    socket.on('scrape', async (data, fn) => {
+        console.log(data);
+        page = await scrape.Scrape(socket.id);
+        fn({
+            status: true,
+            instance: socket.id
+        })
 
+    })
 
-//Routes middlewares
-app.use('/api', routes);
+    socket.on('login', () => {
+        scrape.login(page);
+    })
+
+})
