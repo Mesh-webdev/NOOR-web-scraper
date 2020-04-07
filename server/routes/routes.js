@@ -13,6 +13,7 @@ router.post('/post', (req, res) => {
     res.send("POST test")
 })
 
+
 //GET image
 router.get('/image/:id', (req, res) => {
     id = req.params.id;

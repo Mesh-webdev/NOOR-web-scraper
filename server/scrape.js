@@ -99,7 +99,7 @@ async function LaunchChromium(sessionId) {
             // OK
             log('Launching Chromium...');
             const browser = await puppeteer.launch({
-                headless: false,
+                headless: true,
             });
             log('Launched Chromium successfully ✅');
 
